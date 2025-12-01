@@ -14,10 +14,10 @@ const menuArray = [
     id: 1,
   },
   {
-    name: "Beer",
-    ingredients: ["grain, hops, yeast, water"],
+    name: "Soda",
+    ingredients: ["carbonated water, sugar, natural flavors"],
     price: 12,
-    emoji: "🍺",
+    emoji: "🥤",
     id: 2,
   },
 ];

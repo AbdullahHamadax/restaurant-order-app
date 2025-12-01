@@ -1,13 +1,291 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  color: white;
+  padding: 0;
+  border: none;
+  font-family: "Smythe", sans-serif;
+}
+
+body {
+  color: black;
 }
 
 header {
-  display: flex;
-  flex-direction: column;
+  background: url("https://www.windjammerlondon.co.uk/-/media/sites/pubs-and-hotels/food/b/fullers-july-2023-lateefphotography417.jpg?la=en&h=1280&w=1920&hash=E59B0014432947074086833F71B734E6")
+    no-repeat center / cover;
+  max-width: 100%;
+  aspect-ratio: 12 / 5;
+  color: white;
+}
+
+span {
+  color: red;
+  font-size: 20px;
+}
+span:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0a8058;
+}
+
+form {
+  background-color: white;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.add-item-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.item-name {
+  font-size: 28px;
+}
+.item-ingredients {
+  font-size: 16px;
+}
+.item-price {
+  font-size: 20px;
+}
+
+.complete-order-btn,
+.pay-btn {
+  font-weight: bold;
+  background-color: #10b981;
+  color: white;
+  font-size: 16px;
+  width: 100%;
+  height: 40px;
+  cursor: pointer;
+}
+
+.success-message {
+  background-color: #ecfdf5;
+  color: #065f46;
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+form,
+input,
+.complete-order-btn,
+.pay-btn,
+.add-item-btn {
+  font-family: sans-serif;
+}
+
+input {
   padding: 1rem;
-  height: 150px;
-  background: url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=999&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
-    center / cover;
+  height: 50px;
+  width: 100%;
+  border: 1.3px solid #757575;
+  font-size: 20px;
+}
+
+/* ========== Layout ========== */
+.flex {
+  display: flex;
+}
+.hidden {
+  display: none;
+}
+.inline-flex {
+  display: inline-flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+.flex-row {
+  flex-direction: row;
+}
+
+.gap-1 {
+  gap: 0.5rem;
+}
+
+.items-center {
+  align-items: center;
+}
+.items-start {
+  align-items: flex-start;
+}
+.items-end {
+  align-items: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+
+/* Spacing */
+.p-1 {
+  padding: 0.25rem;
+}
+.p-2 {
+  padding: 0.5rem;
+}
+.p-3 {
+  padding: 0.75rem;
+}
+.p-4 {
+  padding: 1rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.m-1 {
+  margin: 0.25rem;
+}
+.m-2 {
+  margin: 0.5rem;
+}
+.m-4 {
+  margin: 1rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-7 {
+  margin-bottom: 2rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+/* ========== Typography ========== */
+.text-sm {
+  font-size: 0.875rem;
+}
+.text-base {
+  font-size: 1rem;
+}
+.text-md {
+  font-size: 1.125rem;
+}
+.text-lg {
+  font-size: 1.25rem;
+}
+.text-xl {
+  font-size: 2rem;
+}
+.text-2xl {
+  font-size: 4rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-light {
+  font-weight: 300;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ========== Borders ========== */
+.border {
+  border: 1px solid #e5e7eb;
+}
+.border-b {
+  border-bottom: 1px solid #e5e7eb;
+}
+.border-b-2 {
+  border-bottom: 2px solid black;
+}
+.border-t-2 {
+  border-top: 2px solid black;
+}
+.rounded {
+  border-radius: 0.25rem;
+}
+.rounded-full {
+  border-radius: 50%;
+}
+
+/* ========== Backgrounds/Colors ========== */
+.bg-white {
+  background: #ffffff;
+}
+.bg-gray {
+  background: #f5f5f5;
+}
+.bg-green {
+  background: #10b981;
+}
+.bg-black {
+  background: #000;
+}
+
+.text-white {
+  color: #fff;
+}
+.text-gray {
+  color: #777;
+}
+.text-black {
+  color: #000;
+}
+
+/* ========== Shadows ========== */
+.shadow {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }

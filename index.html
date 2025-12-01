@@ -1,13 +1,56 @@
 <html>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <head>
     <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Smythe&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <header>
+    <header class="flex flex-col text-center justify-center p-1">
       <h1>Abdullah's Diner</h1>
       <p>The best burgers and pizzas in town.</p>
     </header>
-    <section class="items-section"></section>
+    <main class="px-4 py-4">
+      <section class="menu-items"></section>
+      <section class="order-section"></section>
+      <form
+        class="hidden shadow-md flex-col p-4 items-center justify-center"
+        method="get"
+      >
+        <p class="text-center font-bold text-xl mb-4">Enter card details</p>
+        <div class="flex flex-col gap-1">
+          <input
+            type="text"
+            placeholder="Enter your name"
+            name="name"
+            required
+          />
+          <input
+            type="number"
+            placeholder="Enter your card number"
+            name="card-number"
+            required
+          />
+          <input
+            type="number"
+            minlength="3"
+            maxlength="3"
+            placeholder="Enter CVV"
+            name="cvv"
+            required
+          />
+          <button type="submit" class="pay-btn">Pay</button>
+        </div>
+      </form>
+      <div class="hidden success-message-div mt-4 text-xl">
+        <p class="success-message">Thanks, James! Your order is on its way!</p>
+      </div>
+    </main>
     <script src="index.js" type="module"></script>
   </body>
 </html>
