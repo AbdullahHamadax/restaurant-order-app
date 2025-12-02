@@ -1,5 +1,7 @@
 import menuArray from "./data.js";
+
 const menuItems = document.querySelector(".menu-items");
+const form = document.querySelector("form");
 
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("add-item-btn")) {
@@ -12,6 +14,8 @@ document.addEventListener("click", (e) => {
     renderOrderSuccess();
   }
 });
+
+form.addEventListener("submit", (e) => e.preventDefault());
 
 function addItem(orderedItemID) {
   const item = menuArray.find((i) => i.id === orderedItemID);
@@ -51,7 +55,9 @@ function renderItems() {
           </button>
         </div>
         
-      </section>`;
+      </section>
+      
+      `;
     })
     .join("");
 
@@ -70,7 +76,11 @@ function getTotal() {
 
 let order = [];
 
-menuItems.innerHTML = renderItems();
+function pageLoad() {
+  menuItems.innerHTML = renderItems();
+}
+
+pageLoad();
 
 function renderOrder() {
   const orderSection = document.querySelector(".order-section");
@@ -99,6 +109,13 @@ function renderOrder() {
 }
 
 function renderOrderSuccess() {
+  const formData = new FormData(form);
+  const name = formData.get("name");
+
+  form.classList.add("hidden");
   document.querySelector(".success-message-div").classList.remove("hidden");
-  document.querySelector(".success-message").textContent = `hi`;
+
+  document.querySelector(
+    ".success-message"
+  ).textContent = `Thanks, ${name}! Your order is on its way!`;
 }
