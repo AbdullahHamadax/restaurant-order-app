@@ -3,19 +3,36 @@ import menuArray from "./data.js";
 const menuItems = document.querySelector(".menu-items");
 const form = document.querySelector("form");
 
+let order = [];
+let isPaid = false;
 document.addEventListener("click", (e) => {
+  if (document.body.classList.contains("form-open")) return;
+
   if (e.target.classList.contains("add-item-btn")) {
     addItem(Number(e.target.dataset.orderedItem));
   } else if (e.target.classList.contains("remove-item-btn")) {
     removeItem(Number(e.target.dataset.removeIndex));
   } else if (e.target.classList.contains("complete-order-btn")) {
-    renderForm();
-  } else if (e.target.classList.contains("pay-btn")) {
-    renderOrderSuccess();
+    if (order.length === 0) {
+      alert("You can't put an empty order");
+      return;
+    }
+    showForm();
   }
 });
 
-form.addEventListener("submit", (e) => e.preventDefault());
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  isPaid = true;
+  renderOrder();
+  renderOrderSuccess();
+});
 
 function addItem(orderedItemID) {
   const item = menuArray.find((i) => i.id === orderedItemID);
@@ -64,8 +81,9 @@ function renderItems() {
   return items;
 }
 
-function renderForm() {
-  document.querySelector("form").classList.remove("hidden");
+function showForm() {
+  form.classList.remove("hidden");
+  document.body.classList.add("form-open");
 }
 
 function getTotal() {
@@ -73,8 +91,6 @@ function getTotal() {
   order.forEach((i) => (Total += i.price));
   return Total;
 }
-
-let order = [];
 
 function pageLoad() {
   menuItems.innerHTML = renderItems();
@@ -84,6 +100,12 @@ pageLoad();
 
 function renderOrder() {
   const orderSection = document.querySelector(".order-section");
+
+  if (isPaid) {
+    orderSection.classList.add("hidden");
+    return;
+  }
+
   orderSection.innerHTML = `
             <p class="text-xl text-center mt-4">Your order</p>
             ${order
@@ -111,11 +133,10 @@ function renderOrder() {
 function renderOrderSuccess() {
   const formData = new FormData(form);
   const name = formData.get("name");
-
+  const sucessMessageDiv = document.querySelector(".success-message-div");
+  const sucessMessageParagraph = document.querySelector(".success-message");
   form.classList.add("hidden");
-  document.querySelector(".success-message-div").classList.remove("hidden");
+  sucessMessageDiv.classList.remove("hidden");
 
-  document.querySelector(
-    ".success-message"
-  ).textContent = `Thanks, ${name}! Your order is on its way!`;
+  sucessMessageParagraph.textContent = `Thanks, ${name}! Your order is on its way!`;
 }
